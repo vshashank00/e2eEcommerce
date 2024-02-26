@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="project.AddingReport"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="Ecomm" parallel="classes">
+        <classes>
+            <class name="project.test.Ecommerce"/>
+            <class name="project.test.Error_in_landingpage"/>
+
+
+        </classes>
+    </test>
+</suite>
