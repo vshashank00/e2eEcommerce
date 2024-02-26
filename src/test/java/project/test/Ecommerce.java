@@ -10,6 +10,7 @@ import java.util.List;
 public class Ecommerce extends BaseTest {
     String product1="IPHONE 13 PRO";
     String product2="ZARA COAT 3";
+//    hello git
     @Test(enabled = true, dataProvider = "fromMap" , dataProviderClass = Data.class)
     void e2eEcom(HashMap<String,String> input) throws IOException, InterruptedException {
         Productpage productpage=landingpage.login(input.get("Email"),input.get("password"));
