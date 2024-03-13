@@ -2,6 +2,7 @@ project\steps\MyStepdefs.class
 project\Data.class
 project\AddingReport.class
 project\cucumberDD\testngTestRunner.class
+project\test\BaseTest.class
 project\test\Ecommerce.class
 project\Data$1.class
 project\Retry.class
