@@ -30,7 +30,7 @@ public class Orderpage{
             }
 
         }
-        System.out.println("verification of products on order page is done for: " + product1+""+product2);
+        System.out.println("verification of products on order page is done for: " + product1+","+product2);
         Assert.assertTrue(True);
 
 

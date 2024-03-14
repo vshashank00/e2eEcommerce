@@ -15,8 +15,8 @@ public class Ecommerce extends BaseTest {
     @Test(enabled = true, dataProvider = "fromMap" , dataProviderClass = Data.class)
     void e2eEcom(HashMap<String,String> input) throws IOException, InterruptedException, SQLException {
         Productpage productpage=landingpage.login(input.get("Email"),input.get("password"));
-        List<String>i=Databaseconn();
-        List<String>item_ordered=productpage.addtoCart(i.get(0),i.get(1));
+        List<String>item_to_be_ordered=Databaseconn();
+        List<String>item_ordered=productpage.addtoCart(item_to_be_ordered.get(0),item_to_be_ordered.get(1));
         Checkoutpage checkoutpage=new Checkoutpage(driver);
         checkoutpage.verficationofProuct(item_ordered);
         Payment_Addresspage payment_addresspage=checkoutpage.checkoutProduct();
@@ -24,9 +24,10 @@ public class Ecommerce extends BaseTest {
 
     }
     @Test (enabled = true, dataProvider = "ecomdata", dataProviderClass = Data.class,dependsOnMethods = "e2eEcom")
-    void gotoOrderpage(String email, String password){
+    void gotoOrderpage(String email, String password) throws SQLException {
         Productpage productpage=landingpage.login(email,password);
-        productpage.gotoorder(product1,product2);
+        List<String>item_to_be_ordered=Databaseconn();
+        productpage.gotoorder(item_to_be_ordered.get(0),item_to_be_ordered.get(1));
     }}
 
 //import io.github.bonigarcia.wdm.WebDriverManager;
