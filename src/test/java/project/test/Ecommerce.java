@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import project.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,9 +13,10 @@ public class Ecommerce extends BaseTest {
     String product2="ZARA COAT 3";
 //    hello git
     @Test(enabled = true, dataProvider = "fromMap" , dataProviderClass = Data.class)
-    void e2eEcom(HashMap<String,String> input) throws IOException, InterruptedException {
+    void e2eEcom(HashMap<String,String> input) throws IOException, InterruptedException, SQLException {
         Productpage productpage=landingpage.login(input.get("Email"),input.get("password"));
-        List<String>item_ordered=productpage.addtoCart(product1,product2);
+        List<String>i=Databaseconn();
+        List<String>item_ordered=productpage.addtoCart(i.get(0),i.get(1));
         Checkoutpage checkoutpage=new Checkoutpage(driver);
         checkoutpage.verficationofProuct(item_ordered);
         Payment_Addresspage payment_addresspage=checkoutpage.checkoutProduct();

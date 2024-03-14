@@ -11,14 +11,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import project.Landingpage;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.*;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public  class BaseTest {
@@ -73,6 +74,19 @@ public  class BaseTest {
     void close(){
         driver.quit();
         
+}
+ArrayList<String> Databaseconn() throws SQLException {//method to fetch data from selenium
+        String host="localhost";
+        String port="3306";
+    Connection co =DriverManager.getConnection("jdbc:mysql://"+host+":"+port+"/Ecomm","root","Shashank@1");
+    Statement s=co.createStatement();
+    ResultSet resultSet=s.executeQuery("select * from products;");
+    resultSet.next();
+    resultSet.next();
+    ArrayList<String> arrayList= new ArrayList<>();
+   arrayList.add( resultSet.getString("product1"));
+    arrayList.add(resultSet.getString("product2"));
+    return arrayList;
 }
 
 }
